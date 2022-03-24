@@ -1,12 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
 
+function alertTest(){
+  alert("test");
+  return true;
+}
+
+function formSubmit() {
+  console.log('You clicked submit.');
+  return true;
+}
+
 // This is the landing page of the application.
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <button onClick={alertTest}>Button</button>
+        <form onSubmit={formSubmit}>
+          <button type="submit">Submit</button>
+        </form>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -18,9 +32,6 @@ function App() {
         >
           Learn React
         </a>
-        <p>this is a test</p>
-        <p>this is another test</p>
-        <p>last test hopefully</p>
       </header>
     </div>
   );
