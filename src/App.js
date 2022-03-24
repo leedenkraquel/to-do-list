@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
+// This is the landing page of the application.
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>this is a test</p>
+        <p>this is another test</p>
+        <p>last test hopefully</p>
       </header>
     </div>
   );
