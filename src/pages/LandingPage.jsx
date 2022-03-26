@@ -9,8 +9,10 @@ import AddTaskButton from '../components/AddTaskButton';
 *   None
 * Description: this class represents the landing page for the web application
 */
-export default function LandingPage () {
-    return <div className="landing">
-            <AddTaskButton />
-        </div>;
+export default class LandingPage extends React.Component {
+    render () {
+        return <div className="landing">
+                <AddTaskButton />
+            </div>;
+    }
 }
