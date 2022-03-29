@@ -15,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <Clock />
+      <br />
       <Views />
     </div>
   );

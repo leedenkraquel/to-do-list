@@ -65,7 +65,8 @@ export default function AddTaskPage () {
                     type="text" 
                     value={taskName.value} 
                     placeholder="I need to..." 
-                    onChange={(e) => setTaskName(e.target.value)}/>
+                    onChange={(e) => setTaskName(e.target.value)}
+                    required/>
             </label>
             <br />
             <label>
@@ -90,8 +91,8 @@ export default function AddTaskPage () {
                     rows={10} />
             </label>
             <br />
-            <input type="button" value="Cancel" onClick={handleCancel}/>
-            <input type="submit" value="Add Task"/>
+            <input type="button" className="button" value="Cancel" onClick={handleCancel}/>
+            <input type="submit" className="button" value="Add Task"/>
         </form>
     </div>);
 }
