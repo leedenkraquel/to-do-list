@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "./Modal";
 
 /*
 * Name: Task
@@ -14,19 +15,25 @@ export default function Task (props) {
     const date = props.date; // represents when the task is supposed to be completed by
     const description = props.description; // represents the description of the task
     const handler = props.handler; // represents a function that should be run in the parent when this element is activated
+ 
 
-    const onDelete = () => {
+    const deleteTask = () => { // deletes the task 
         let taskList = JSON.parse(localStorage.getItem("taskList"));
         taskList.splice(index, 1);
         localStorage.setItem("taskList", JSON.stringify(taskList));
         handler(taskList);
-    }
+    };
+    
+    const confirmDelete = <Modal  // represents a modal that confirms the users decision to delete a task
+    buttonValue="🗑️"
+    modalValue="Are you sure you wish to delete this task?" 
+    onConfirm={deleteTask} /> 
 
     return (
         <div>
             <label>
                 <input type="checkbox" />
-                {name} - {date} <input type="button" className="button" value="🗑️" onClick={onDelete}/>
+                {name} - {date} {confirmDelete}
                 <br />
                 {description}
             </label>

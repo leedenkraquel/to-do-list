@@ -38,7 +38,7 @@ export default class LandingPage extends React.Component {
     * Description: updates the state to reflect the task list correctly
     * Returns:
     *   none
-    */
+    */ 
     updateTasks (taskList) {
         let tasks = taskList.map((task, index) => { // creates a task for each task in the task list
             return (
