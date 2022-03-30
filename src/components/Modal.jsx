@@ -15,7 +15,7 @@ export default function Modal (props) {
     const buttonValue = props.buttonValue; // represents the child of the button
     const modalValue = props.modalValue; // represents the child of the modal
     const modalTitle = props.modalTitle || ""; // represents the a title of the modal
-    const onClick = () => {setVisible(!visible);}; // toggle the visibility of the modal
+    const onClick = () => {setVisible(!visible);} // toggle the visibility of the modal
     const onConfirm = props.onConfirm || onClick; // represents the function from the parent
 
     return visible ? (

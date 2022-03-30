@@ -25,7 +25,8 @@ export default function AddTaskButton () {
     *   none
     * */
     const handleOnClick = () => {
-        navigate("/AddTask");
+        //TODO: if the user is not logged in this button should instead route to the login page
+        navigate("/AddTask"); // route to the add task page
     };
 
     return <div className="center">

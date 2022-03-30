@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 * Returns:
 *   component - the output component form that represents the add task page
 */
-export default function AddTaskPage () {
+export default function AddTaskPage (props) {
     const [taskName, setTaskName] = useState(""); // represents the tasks name
     const [description, setDescription] = useState(""); // represents the tasks description
     const [date, setDate] = useState(new Date()); // represents when the task should be completed by
@@ -35,8 +35,7 @@ export default function AddTaskPage () {
             "date": date.toLocaleTimeString().slice(0, -6) + date.toLocaleTimeString().slice(-2) + " " + date.toLocaleDateString(),
             "description": description
         };
-        let taskList = []; // initialize the task list as an array
-        taskList = JSON.parse(localStorage.getItem("taskList")) || []; // if there already exists a task list in the storage use that instead
+        let taskList = JSON.parse(localStorage.getItem("taskList")) || []; // if there already exists a task list in the storage use that instead
         taskList.push(newTask); // add the new task to the task list
         localStorage.setItem("taskList", JSON.stringify(taskList)); // save the new task list to the storage
         navigate("/"); // route to the landing page
@@ -66,7 +65,7 @@ export default function AddTaskPage () {
                     value={taskName.value} 
                     placeholder="I need to..." 
                     onChange={(e) => setTaskName(e.target.value)}
-                    required/>
+                    required />
             </label>
             <br />
             <label>
