@@ -1,8 +1,5 @@
 .App {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0px;
+  padding: 20px;
   color: #37788a;
   width: 50%;
 }
@@ -20,7 +17,7 @@
   line-height: 20px;
   list-style: none;
   margin-right: 5px;
-  margin-left: 5px;
+  margin-left: 0px;
   padding: 10px 12px;
   text-align: center;
   transition: all 200ms;

@@ -4,9 +4,12 @@
 }
 
 .form {
-    width: 30%;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 5px;
     display: block; 
-    color: #aac;
+    color: #222;
+    font-size: 20px;
     margin-left: auto;
     margin-right: auto;
 }

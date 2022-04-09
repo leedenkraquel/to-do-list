@@ -32,7 +32,7 @@ export default function AddTaskPage (props) {
         event.preventDefault(); // supress the default behavior of the submit button
         let newTask ={ // define the new task that is to be added
             "taskName": taskName,
-            "date": date.toLocaleTimeString().slice(0, -6) + date.toLocaleTimeString().slice(-2) + " " + date.toLocaleDateString(),
+            "date": date.toLocaleTimeString().slice(0, -6) + date.toLocaleTimeString().slice(-2) + " " + date.toLocaleDateString().substring(0, 3),
             "description": description
         };
         let taskList = JSON.parse(localStorage.getItem("taskList")) || []; // if there already exists a task list in the storage use that instead
@@ -80,6 +80,7 @@ export default function AddTaskPage (props) {
                     onChange={setDate} 
                     disableClock={true} />
             </label>
+            <br />
             <label>
                 Description
                 <br />

@@ -55,9 +55,8 @@ export default class LandingPage extends React.Component {
 
     render () {
         return <div className="landing">
-                <AddTaskButton />
-                <h3>To Do</h3>
                 {this.state.tasks}
+                <AddTaskButton />
             </div>;
     }
 }

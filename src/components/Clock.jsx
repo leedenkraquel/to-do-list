@@ -64,8 +64,8 @@ export default class Clock extends React.Component {
 
     render () {
         return <div className="clock">
-          <h1>{this.state.date.toLocaleTimeString().slice(0, -6) + this.state.date.toLocaleTimeString().slice(-2)}</h1>      
-          <h2>{this.state.date.toLocaleDateString()}</h2>
+          <p className="time">{this.state.date.toLocaleTimeString().slice(0, -6) + this.state.date.toLocaleTimeString().slice(-2)}</p>      
+          <p className="date">{this.state.date.toLocaleDateString()}</p>
         </div>
     }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "./Modal";
+import "./Task.css";
 
 /*
 * Name: Task
@@ -30,12 +31,10 @@ export default function Task (props) {
     onConfirm={deleteTask} /> 
 
     return (
-        <div>
+        <div className="task">
             <label>
                 <input type="checkbox" />
                 {name} - {date} {confirmDelete}
-                <br />
-                {description}
             </label>
         </div>
     );

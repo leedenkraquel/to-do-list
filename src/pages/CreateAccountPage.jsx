@@ -26,13 +26,13 @@ export default function CreateAccountPage (props) {
     * Author(s): Leeden Raquel
     * Inputs:
     *   none
-    * Description: run this funciton when the create account form is submitted
+    * Description: run this function when the create account form is submitted
     * Returns:
     *   none
     */
     const handleSubmit = (event) => {
         event.preventDefault(); // supress the default behavior of the submit button
-        if (password == passwordConfirm) { // if the two passwords match
+        if (password === passwordConfirm) { // if the two passwords match
             const newUser = { // create a new user object
                 "username": username,
                 "email": email,
@@ -82,6 +82,7 @@ export default function CreateAccountPage (props) {
                         onChange={(e) => setEmail(e.target.value)}
                         required />
                 </label>
+                <br />
                 <label>
                     Password
                     <br />
@@ -91,6 +92,7 @@ export default function CreateAccountPage (props) {
                         onChange={(e) => setPassword(e.target.value)}
                         required />
                 </label>
+                <br />
                 <label>
                     <div className="popup">
                         Confirm Password
@@ -103,6 +105,7 @@ export default function CreateAccountPage (props) {
                         onChange={(e) => setPasswordConfirm(e.target.value)}
                         required />
                 </label>
+                <br />
                 <br />
                 <input type="button" className="button" value="Cancel" onClick={handleCancel}/>
                 <input type="submit" className="button" value="Create Account"/>

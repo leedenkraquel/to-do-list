@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
+import * as AWS from 'aws-sdk';
+
+// configure the settings for aws interaction
+AWS.config.update({
+    region: "us-west-1",
+    secretAccessKey: "9v/Ef/WRqoaFaNAg7FxXkVIUQ9ZSEn2ewl/AY1cX",
+    accessKeyId: "AKIAUXF3BYXVDNHZH573"
+});
 
 ReactDOM.render(
   <App />,
