@@ -2,6 +2,7 @@ import React from 'react';
 import './LandingPage.css'
 import AddTaskButton from '../components/AddTaskButton';
 import Task from '../components/Task';
+import LoginButton from '../components/LoginButton';
 
 /*
 * Name: LandingPage
@@ -55,6 +56,7 @@ export default class LandingPage extends React.Component {
 
     render () {
         return <div className="landing">
+                <LoginButton />
                 {this.state.tasks}
                 <AddTaskButton />
             </div>;

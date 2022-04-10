@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { createUser } from "../managers/userManager";
-import "./CreateAccountPage.css";
+import { signIn } from "../managers/userManager";
+import "./LogInPage.css";
 
 /*
-* Name: CreateAccountPage
+* Name: LogInPage
 * Author(s): Leeden Raquel
 * Inputs:
 *   props - standard information passed to all children
-* Description: this is the page where a user creates an account
+* Description: this is the page where a user logs into an account
 * Returns:
 *   Component - the output component for the create account page
 */
-export default function CreateAccountPage(props) {
+export default function LogInPage(props) {
     const [email, setEmail] = useState(""); // represents the users email address
     const [password, setPassword] = useState(""); // represents the users password
-    const [passwordConfirm, setPasswordConfirm] = useState(""); // represents the confirmation for the password
     const navigate = useNavigate(); // hook used to change the route of the web app
 
     /*
@@ -23,19 +22,14 @@ export default function CreateAccountPage(props) {
     * Author(s): Leeden Raquel
     * Inputs:
     *   none
-    * Description: run this function when the create account form is submitted
+    * Description: run this function when the log in form is submitted
     * Returns:
     *   none
     */
     const handleSubmit = (event) => {
         event.preventDefault(); // supress the default behavior of the submit button
-        if (password === passwordConfirm) { // if the two passwords match
-            createUser(email, password); // creates a new user
-            navigate("/"); // route to the landing page
-        } else {
-            var popup = document.getElementById("myPopup"); // get the popup element
-            popup.classList.toggle("show"); // show the popup
-        }
+        signIn(email, password); // sign in to the account
+        navigate("/"); // route to the landing page
     }
 
     /*
@@ -52,7 +46,7 @@ export default function CreateAccountPage(props) {
     }
 
     /*
-    * Name: handleSignIn
+    * Name: handleSignUp
     * Author(s): Leeden Raquel
     * Inputs:
     *   none
@@ -60,14 +54,14 @@ export default function CreateAccountPage(props) {
     * Returns:
     *   none
     */
-    const handleSignIn = () => {
-        navigate("/SignIn"); // route to the sign in page
+    const handleSignUp = () => {
+        navigate("/CreateAccount"); // route to the sign in page
     }
 
     return (
         <div className="container">
             <form className="form" onSubmit={handleSubmit}>
-                <button className="button" id="signIn" onClick={handleSignIn}>Sign In</button>
+                <button className="button" id="signUp" onClick={handleSignUp}>Sign Up</button>
                 <br />
                 <div className="bordered">
                     <label>
@@ -90,22 +84,9 @@ export default function CreateAccountPage(props) {
                             required />
                     </label>
                     <br />
-                    <label>
-                        <div className="popup">
-                            Confirm Password
-                            <span className="popupText" id="myPopup">Your passwords do not match</span>
-                        </div>
-                        <br />
-                        <input
-                            type="password"
-                            value={passwordConfirm.value}
-                            onChange={(e) => setPasswordConfirm(e.target.value)}
-                            required />
-                    </label>
-                    <br />
                     <br />
                     <input type="button" className="button" value="Cancel" onClick={handleCancel} />
-                    <input type="submit" className="button" value="Create Account" />
+                    <input type="submit" className="button" value="Sign In" />
                 </div>
             </form>
         </div>

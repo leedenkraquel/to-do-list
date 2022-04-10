@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import AddTaskPage from './pages/AddTaskPage';
 import CreateAccountPage from './pages/CreateAccountPage';
+import LogInPage from './pages/LogInPage';
 
 /*
 * Name: Views
@@ -19,6 +20,7 @@ function Views () {
           <Route exact path="/" element={ <LandingPage /> } />
           <Route path="/AddTask" element={ <AddTaskPage /> } />
           <Route path="/CreateAccount" element={ <CreateAccountPage /> } />
+          <Route path="/SignIn" element={ <LogInPage /> } />
           <Route path="*" element={ <LandingPage /> } />
         </Routes>
     </BrowserRouter>;

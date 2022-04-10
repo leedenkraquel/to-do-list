@@ -4,7 +4,7 @@
 }
 
 .taskForm {
-    display: block; 
+    display: block;
     color: #aac;
     margin-left: auto;
     margin-right: auto;
@@ -20,5 +20,5 @@
 
 .description {
     width: 100%;
-    text-align:start;
+    text-align: start;
 }
