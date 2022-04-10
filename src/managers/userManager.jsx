@@ -19,7 +19,7 @@ const userPool = new CognitoUserPool(poolData); // represents the user pool from
 * Returns:
 *  err - if the api returns an error code return the error code
 */
-export function createUser (email, password) {
+export function createUser(email, password) {
     userPool.signUp(email, password, [], null, (err, data) => { // create a new user account
         if (err) {
             console.log("Error:", err.message);
@@ -39,7 +39,7 @@ export function createUser (email, password) {
 * Returns:
 *  none
 */
-export function signIn (email, password) {
+export function signIn(email, password) {
     const user = new CognitoUser({ // represents the user
         Username: email,
         Pool: userPool
@@ -58,19 +58,61 @@ export function signIn (email, password) {
         },
         newPasswordRequired: data => {
             console.log("New Password Required:", data);
-        }        
+        }
     });
 }
 
- /* 
- * Name: fetchData
- * Author(s): Leeden Raquel
- * Inputs:
- *  tableName - the name of the table you wanna pull data from
- * Desciption: pull all the data from a table
- * Returns:
- *  none
- */
+/*
+* Name: getSession
+* Author(s): Leeden Raquel
+* Inputs:
+*   none
+* Description: defines if a user is currently logged in
+* Returns:
+*  none
+*/
+export async function getSession() {
+    return new Promise((resolve, reject) => {
+        const user = userPool.getCurrentUser(); // get the current user account
+        if (user) {
+            user.getSession((err, session) => {
+                if (err) {
+                    reject();
+                } else {
+                    resolve(session);
+                }
+            });
+        } else {
+            reject();
+        }
+    });
+}
+
+/*
+* Name: signOut
+* Author(s): Leeden Raquel
+* Inputs:
+*  none
+* Description: signs the user out if theyre currently logged in
+* Returns:
+*  none
+*/
+export function signOut() {
+    const user = userPool.getCurrentUser(); // check if the user is logged in
+    if (user) {
+        user.signOut(); // sign out
+    }
+}
+
+/* 
+* Name: fetchData
+* Author(s): Leeden Raquel
+* Inputs:
+*  tableName - the name of the table you wanna pull data from
+* Desciption: pull all the data from a table
+* Returns:
+*  none
+*/
 export const fetchData = (tableName) => {
     var params = {
         TableName: tableName

@@ -52,3 +52,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
+
+#topRight {
+  float: right;
+}

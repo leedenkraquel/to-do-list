@@ -67,7 +67,7 @@ export default function CreateAccountPage(props) {
     return (
         <div className="container">
             <form className="form" onSubmit={handleSubmit}>
-                <button className="button" id="signIn" onClick={handleSignIn}>Sign In</button>
+                <button type="button" className="button" id="signIn" onClick={handleSignIn}>Sign In</button>
                 <br />
                 <div className="bordered">
                     <label>

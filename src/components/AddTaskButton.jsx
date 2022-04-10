@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddTaskButton.css'
 import { useNavigate } from 'react-router-dom';
+import { getSession } from '../managers/userManager';
 
 /*
 * Name: AddTaskButton
@@ -27,6 +28,11 @@ export default function AddTaskButton () {
     const handleOnClick = () => {
         //TODO: if the user is not logged in this button should instead route to the login page
         navigate("/AddTask"); // route to the add task page
+        getSession().then((session) => {
+            console.log("Logged in:", session);
+        }).catch((err) => {
+            console.log("Not logged in:", err);
+        });
     };
 
     return <div className="center">

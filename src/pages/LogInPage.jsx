@@ -61,7 +61,7 @@ export default function LogInPage(props) {
     return (
         <div className="container">
             <form className="form" onSubmit={handleSubmit}>
-                <button className="button" id="signUp" onClick={handleSignUp}>Sign Up</button>
+                <button type="button" className="button" id="signUp" onClick={handleSignUp}>Sign Up</button>
                 <br />
                 <div className="bordered">
                     <label>
