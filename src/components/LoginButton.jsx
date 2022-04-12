@@ -17,9 +17,9 @@ export default function LoginButton () {
     const [loggedIn, setLoggedIn] = useState(false); // represents if the user is logged in
     useEffect(() => { // check the login status of the user
         getSession().then(() => {
-            setLoggedIn(true);
+            setLoggedIn(true); // change the login button to log out button
         }).catch(() => {
-            setLoggedIn(false);
+            setLoggedIn(false); // change the log out button to log in button
         })
     });
 

@@ -22,9 +22,9 @@ const userPool = new CognitoUserPool(poolData); // represents the user pool from
 export function createUser(email, password) {
     userPool.signUp(email, password, [], null, (err, data) => { // create a new user account
         if (err) {
-            console.log("Error:", err.message);
+            console.log("Error:", err.message); // error exception
         } else {
-            console.log("Success:", data);
+            console.log("Success:", data); // the account is created
         }
     })
 }
@@ -49,15 +49,15 @@ export function signIn(email, password) {
         Password: password
     });
 
-    user.authenticateUser(authDetails, {
+    user.authenticateUser(authDetails, { // attempt to authenticate the user account
         onSuccess: data => {
-            console.log("Success:", data);
+            console.log("Success:", data); // the user was logged in
         },
         onFailure: err => {
-            console.log("Error:", err);
+            console.log("Error:", err); // error exception
         },
         newPasswordRequired: data => {
-            console.log("New Password Required:", data);
+            console.log("New Password Required:", data); // the user was compromised or otherwise needs to reset password
         }
     });
 }
@@ -74,16 +74,16 @@ export function signIn(email, password) {
 export async function getSession() {
     return new Promise((resolve, reject) => {
         const user = userPool.getCurrentUser(); // get the current user account
-        if (user) {
+        if (user) { // if the user account exists
             user.getSession((err, session) => {
                 if (err) {
-                    reject();
+                    reject(); // error exception
                 } else {
-                    resolve(session);
+                    resolve(session); // return the session of the user
                 }
             });
         } else {
-            reject();
+            reject(); // user did not exist
         }
     });
 }
