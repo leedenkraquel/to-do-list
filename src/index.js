@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import * as AWS from 'aws-sdk';
 
-// configure the settings for aws interaction
+// configure the settings for aws user configuration
 AWS.config.update({
     region: "us-west-1",
     secretAccessKey: "9v/Ef/WRqoaFaNAg7FxXkVIUQ9ZSEn2ewl/AY1cX",

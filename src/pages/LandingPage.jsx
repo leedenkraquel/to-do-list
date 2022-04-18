@@ -3,6 +3,8 @@ import './LandingPage.css'
 import AddTaskButton from '../components/AddTaskButton';
 import Task from '../components/Task';
 import LoginButton from '../components/LoginButton';
+import { fetchAllData } from '../managers/taskManager';
+import { getSession } from '../managers/userManager';
 
 /*
 * Name: LandingPage
@@ -16,17 +18,13 @@ import LoginButton from '../components/LoginButton';
 export default class LandingPage extends React.Component {
     constructor(props) {
         super(props);
-        let taskList = JSON.parse(localStorage.getItem("taskList")) || []; // find a task list in the storage
-        let updateTasks = this.updateTasks;
-        let tasks = taskList.map((task, index) => { // creates a task for each task in the task list
-            return (
-                <Task
-                    key={task.taskName}
-                    index={index}
-                    name={task.taskName}
-                    description={task.description}
-                    date={task.date}
-                    handler={updateTasks.bind(this)} />);
+        let tasks = [];
+        getSession().then((session) => {
+            let username = session.idToken.payload.sub; // get the username of the user
+            fetchAllData(username).then((data) => {
+                let taskList = data.Items; // get the data from the database
+                this.updateTasks(taskList); // update the list of tasks 
+            }); // get the task list of the user
         });
         this.state = { tasks: tasks };
     }
@@ -44,11 +42,12 @@ export default class LandingPage extends React.Component {
         let tasks = taskList.map((task, index) => { // creates a task for each task in the task list
             return (
                 <Task
-                    key={task.taskName}
+                    key={task.taskID.N}
+                    id = {task.taskID.N}
                     index={index}
-                    name={task.taskName}
-                    description={task.description}
-                    date={task.date}
+                    name={task.task.S}
+                    description={task.description.S}
+                    date={task.date.S}
                     handler={this.updateTasks.bind(this)} />);
         });
         this.setState({ tasks: tasks });

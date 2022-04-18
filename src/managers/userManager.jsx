@@ -1,8 +1,5 @@
-import * as AWS from 'aws-sdk'
 import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
-const dynamo = new AWS.DynamoDB(); // represents the database 
-const docClient = new AWS.DynamoDB.DocumentClient(); // represents the database manager
 const poolData = { // represents the AWS user pool settings
     UserPoolId: 'us-west-1_DuGrZKS7O',
     ClientId: 'ma39asv6rrjtmt8avt6ea3niq'
@@ -26,7 +23,7 @@ export function createUser(email, password) {
         } else {
             console.log("Success:", data); // the account is created
         }
-    })
+    });
 }
 
 /*
@@ -102,51 +99,5 @@ export function signOut() {
     if (user) {
         user.signOut(); // sign out
     }
-}
-
-/* 
-* Name: fetchData
-* Author(s): Leeden Raquel
-* Inputs:
-*  tableName - the name of the table you wanna pull data from
-* Desciption: pull all the data from a table
-* Returns:
-*  none
-*/
-export const fetchData = (tableName) => {
-    var params = {
-        TableName: tableName
-    }
-
-    docClient.scan(params, function (err, data) {
-        if (!err) {
-            console.log(data);
-        }
-    })
-}
-
-/*
-* Name: putData
-* Author(s): Leeden Raquel 
-* Inputs:
-*  tableName - the name of the table to push data to
-*  data - the data you wish to push on to the table
-* Description: put data to the specified table
-* Returns:
-*  none
-*/
-export const putData = (tableName, data) => {
-    var params = {
-        TableName: tableName,
-        Item: data
-    }
-
-    docClient.put(params, function (err) {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            console.log("Successfully put data to database", data);
-        }
-    })
 }
 

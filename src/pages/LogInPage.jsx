@@ -7,12 +7,12 @@ import "./LogInPage.css";
 * Name: LogInPage
 * Author(s): Leeden Raquel
 * Inputs:
-*   props - standard information passed to all children
+*   none
 * Description: this is the page where a user logs into an account
 * Returns:
 *   Component - the output component for the create account page
 */
-export default function LogInPage(props) {
+export default function LogInPage() {
     const [email, setEmail] = useState(""); // represents the users email address
     const [password, setPassword] = useState(""); // represents the users password
     const navigate = useNavigate(); // hook used to change the route of the web app

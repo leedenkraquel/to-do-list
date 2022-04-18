@@ -7,12 +7,12 @@ import "./CreateAccountPage.css";
 * Name: CreateAccountPage
 * Author(s): Leeden Raquel
 * Inputs:
-*   props - standard information passed to all children
+*  none
 * Description: this is the page where a user creates an account
 * Returns:
-*   Component - the output component for the create account page
+*  Component - the output component for the create account page
 */
-export default function CreateAccountPage(props) {
+export default function CreateAccountPage() {
     const [email, setEmail] = useState(""); // represents the users email address
     const [password, setPassword] = useState(""); // represents the users password
     const [passwordConfirm, setPasswordConfirm] = useState(""); // represents the confirmation for the password

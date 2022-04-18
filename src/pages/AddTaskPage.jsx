@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import './AddTaskPage.css';
 import { useNavigate } from 'react-router-dom';
+import { createTable, putTaskData } from '../managers/taskManager';
+import { getSession } from '../managers/userManager';
 
 /*
 * Name: AddTaskPage
 * Author(s): Leeden Raquel
 * Inputs:
-*   props - standard information passed to all children
+*   none
 * Description: represents the page where a user would add a task
 * Returns:
 *   component - the output component form that represents the add task page
 */
-export default function AddTaskPage (props) {
+export default function AddTaskPage () {
     const [taskName, setTaskName] = useState(""); // represents the tasks name
     const [description, setDescription] = useState(""); // represents the tasks description
     const [date, setDate] = useState(new Date()); // represents when the task should be completed by
@@ -30,14 +32,14 @@ export default function AddTaskPage (props) {
     */
     const handleSubmit = (event) => { 
         event.preventDefault(); // supress the default behavior of the submit button
-        let newTask ={ // define the new task that is to be added
-            "taskName": taskName,
-            "date": date.toLocaleTimeString().slice(0, -6) + date.toLocaleTimeString().slice(-2) + " " + date.toLocaleDateString().substring(0, 3),
-            "description": description
-        };
-        let taskList = JSON.parse(localStorage.getItem("taskList")) || []; // if there already exists a task list in the storage use that instead
-        taskList.push(newTask); // add the new task to the task list
-        localStorage.setItem("taskList", JSON.stringify(taskList)); // save the new task list to the storage
+        getSession().then((session) => {
+            let username = session.idToken.payload.sub; // get the username of the user
+            createTable(username); // create table for the user
+            let taskDate = date.toLocaleTimeString().slice(0, -6) + date.toLocaleTimeString().slice(-2) + " " + date.toLocaleDateString().substring(0, 3);
+            putTaskData(username, taskName, description, taskDate);
+        }).catch((error) => {
+            console.log("Error:", error); // the user is not logged in
+        });
         navigate("/"); // route to the landing page
     }
 
